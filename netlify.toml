@@ -1,0 +1,115 @@
+[build]
+publish = "public"
+command = "hugo --minify"
+
+[build.environment]
+HUGO_VERSION = "0.114.1"
+NODE_VERSION = "20"
+
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[redirects]]
+from = "/fhof.php"
+to = "/hof/"
+status = 301
+
+[[redirects]]
+from = "/classic_index.php"
+to = "/"
+status = 301
+
+[[redirects]]
+from = "/kuehe.php"
+to = "/erlebnisse/kuehe/"
+status = 301
+
+[[redirects]]
+from = "/ponys.php"
+to = "/erlebnisse/ponys/"
+status = 301
+
+[[redirects]]
+from = "/kinder.php"
+to = "/erlebnisse/kinder/"
+status = 301
+
+[[redirects]]
+from = "/tiere.php"
+to = "/erlebnisse/tiere/"
+status = 301
+
+[[redirects]]
+from = "/spielen.php"
+to = "/erlebnisse/spielen/"
+status = 301
+
+[[redirects]]
+from = "/fewos.php"
+to = "/ferienwohnungen/"
+status = 301
+
+[[redirects]]
+from = "/fewo1.php"
+to = "/ferienwohnungen/fewo-1/"
+status = 301
+
+[[redirects]]
+from = "/fewo2.php"
+to = "/ferienwohnungen/fewo-2/"
+status = 301
+
+[[redirects]]
+from = "/fewo3.php"
+to = "/ferienwohnungen/fewo-3/"
+status = 301
+
+[[redirects]]
+from = "/fewo4.php"
+to = "/ferienwohnungen/fewo-4/"
+status = 301
+
+[[redirects]]
+from = "/fewo5.php"
+to = "/ferienwohnungen/fewo-5/"
+status = 301
+
+[[redirects]]
+from = "/fhaus1.php"
+to = "/ferienwohnungen/ferienhaus/"
+status = 301
+
+[[redirects]]
+from = "/preisinfo.php"
+to = "/preise/"
+status = 301
+
+[[redirects]]
+from = "/kontakt.php"
+to = "/kontakt/"
+status = 301
+
+[[redirects]]
+from = "/anfahrt.php"
+to = "/kontakt/"
+status = 301
+
+[[redirects]]
+from = "/buchung.php"
+to = "/buchung/"
+status = 301
+
+[[redirects]]
+from = "/dschutz.php"
+to = "/datenschutz/"
+status = 301
+
+[[redirects]]
+from = "/index.htm"
+to = "/"
+status = 301

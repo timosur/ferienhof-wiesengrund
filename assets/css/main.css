@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+/* ===== Custom Theme: Ferienhof Wiesengrund ===== */
+
+@theme {
+  --color-primary-50: oklch(0.98 0.01 75);
+  --color-primary-100: oklch(0.95 0.02 75);
+  --color-primary-200: oklch(0.90 0.04 75);
+  --color-primary-300: oklch(0.83 0.06 75);
+  --color-primary-400: oklch(0.75 0.09 72);
+  --color-primary-500: oklch(0.65 0.12 65);
+  --color-primary-600: oklch(0.55 0.12 60);
+  --color-primary-700: oklch(0.48 0.10 58);
+  --color-primary-800: oklch(0.40 0.08 55);
+  --color-primary-900: oklch(0.33 0.06 50);
+
+  --color-accent-50: oklch(0.97 0.02 145);
+  --color-accent-100: oklch(0.93 0.04 145);
+  --color-accent-200: oklch(0.87 0.08 145);
+  --color-accent-300: oklch(0.78 0.12 145);
+  --color-accent-400: oklch(0.68 0.15 145);
+  --color-accent-500: oklch(0.58 0.15 148);
+  --color-accent-600: oklch(0.48 0.13 148);
+  --color-accent-700: oklch(0.40 0.10 148);
+  --color-accent-800: oklch(0.33 0.08 148);
+  --color-accent-900: oklch(0.27 0.06 148);
+
+  --color-warm-50: oklch(0.98 0.005 80);
+  --color-warm-100: oklch(0.96 0.01 80);
+  --color-warm-200: oklch(0.92 0.015 75);
+
+  --font-heading: "Lora", serif;
+  --font-body: "Source Sans 3", sans-serif;
+}
+
+/* ===== Base Styles ===== */
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-stone-800);
+  background-color: var(--color-warm-50);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* ===== Gallery Lightbox ===== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 0.85);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+/* ===== Availability Calendar ===== */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+}
+
+.calendar-day.booked {
+  background-color: oklch(0.75 0.12 25 / 0.3);
+  color: oklch(0.45 0.12 25);
+}
+
+.calendar-day.available {
+  background-color: oklch(0.85 0.12 145 / 0.2);
+  color: oklch(0.35 0.12 145);
+}
+
+.calendar-day.today {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: -2px;
+  font-weight: 700;
+}
+
+/* ===== Header Transparent Mode (Homepage) ===== */
+
+#site-header[data-transparent="true"] {
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.35), transparent);
+  box-shadow: none;
+}
+
+#site-header[data-transparent="true"] .header-title {
+  color: white;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 0.5);
+}
+
+#site-header[data-transparent="true"] .dropdown-toggle,
+#site-header[data-transparent="true"] nav a:not(.bg-primary-600) {
+  color: white;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
+}
+
+#site-header[data-transparent="true"] nav a:not(.bg-primary-600):hover {
+  background-color: rgb(255 255 255 / 0.15);
+  color: white;
+}
+
+#site-header[data-transparent="true"] #menu-toggle {
+  color: white;
+}
+
+#site-header[data-transparent="true"] #menu-toggle:hover {
+  background-color: rgb(255 255 255 / 0.15);
+}
+
+#site-header.scrolled {
+  background-color: rgb(255 255 255 / 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+#site-header.scrolled .header-title {
+  color: var(--color-primary-800);
+  text-shadow: none;
+}
+
+#site-header.scrolled .dropdown-toggle,
+#site-header.scrolled nav a:not(.bg-primary-600) {
+  color: var(--color-stone-700);
+  text-shadow: none;
+}
+
+#site-header.scrolled nav a:not(.bg-primary-600):hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+#site-header.scrolled #menu-toggle {
+  color: var(--color-stone-600);
+}
+
+#site-header[data-transparent="false"] {
+  background-color: rgb(255 255 255 / 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+#site-header[data-transparent="false"] .header-title {
+  color: var(--color-primary-800);
+}
+
+#site-header[data-transparent="false"] .dropdown-toggle,
+#site-header[data-transparent="false"] nav a:not(.bg-primary-600) {
+  color: var(--color-stone-700);
+}
+
+#site-header[data-transparent="false"] nav a:not(.bg-primary-600):hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+#site-header[data-transparent="false"] #menu-toggle {
+  color: var(--color-stone-600);
+}
+
+/* ===== Mobile Menu Animation ===== */
+
+.mobile-menu {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}

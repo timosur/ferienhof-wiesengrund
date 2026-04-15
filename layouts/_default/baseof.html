@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if not .IsHome }}{{ .Title }} — {{ end }}{{ .Site.Title }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  {{ $css := resources.Get "css/main.css" | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+  {{ partial "header.html" . }}
+
+  <main class="flex-1">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{ $gallery := resources.Get "js/gallery.js" }}
+  {{ if $gallery }}
+  <script src="{{ $gallery.RelPermalink }}" defer></script>
+  {{ end }}
+  {{ $calendar := resources.Get "js/calendar.js" }}
+  {{ if $calendar }}
+  <script src="{{ $calendar.RelPermalink }}" defer></script>
+  {{ end }}
+  <script>
+    // Header scroll behavior — add .scrolled class when scrolled past threshold
+    (function () {
+      var header = document.getElementById('site-header');
+      if (!header) return;
+      var threshold = 60;
+      function onScroll() {
+        if (window.scrollY > threshold) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('menu-overlay');
+      if (btn && menu) {
+        btn.addEventListener('click', function () {
+          menu.classList.toggle('open');
+          overlay.classList.toggle('hidden');
+          document.body.classList.toggle('overflow-hidden');
+        });
+        if (overlay) {
+          overlay.addEventListener('click', function () {
+            menu.classList.remove('open');
+            overlay.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+          });
+        }
+      }
+      // Dropdown toggle on mobile
+      document.querySelectorAll('.dropdown-toggle').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          if (window.innerWidth < 1024) {
+            e.preventDefault();
+            el.nextElementSibling.classList.toggle('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

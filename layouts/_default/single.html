@@ -1,0 +1,20 @@
+{{ define "main" }}
+<section class="py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">{{ .Section | humanize }}</span>
+      <h1 class="text-3xl lg:text-4xl font-heading font-bold text-stone-900 mt-2 mb-6">{{ .Title }}</h1>
+    </div>
+
+    {{ if .Params.images }}
+    <div class="mb-10">
+      {{ partial "gallery.html" (dict "images" .Params.images "alt" .Title) }}
+    </div>
+    {{ end }}
+
+    <div class="prose prose-stone prose-lg max-w-3xl">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,32 @@
+{
+  "score": 9.8,
+  "count": 289,
+  "categories": {
+    "unterkunft": 9.7,
+    "service": 9.9,
+    "ruhe": 9.5,
+    "landerlebnisse": 9.9,
+    "nachhaltigkeit": 9.5
+  },
+  "reviews": [
+    {
+      "name": "Tanja F.",
+      "score": "10",
+      "text": "Wir hatten zum 5. Mal eine wunderschöne Ferienwoche bei Familie Köpke. Man fühlt sich pudelwohl auf dem Hof und sowohl für Kinder als auch Erwachsene ist es eine tolle Zeit.",
+      "date": "April 2026"
+    },
+    {
+      "name": "Anja",
+      "score": "10",
+      "text": "Wir waren mit den Kindern 2 Wochen bei Familie Köpke. Es ist für uns super schön dort. Es ist sehr familiär und das gemeinschaftliche wird richtig gelebt.",
+      "date": "April 2026"
+    },
+    {
+      "name": "Matthis",
+      "score": "10",
+      "text": "Sehr schöner Hof mit vielen Attraktionen für Kinder wie z.B. Pony reiten.",
+      "date": "April 2026"
+    }
+  ],
+  "scraped_at": "2026-04-15T22:20:52.583966"
+}

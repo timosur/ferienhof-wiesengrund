@@ -1,0 +1,44 @@
+{{ define "main" }}
+<section class="py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">{{ .Section | humanize }}</span>
+      <h1 class="text-3xl lg:text-4xl font-heading font-bold text-stone-900 mt-2 mb-6">{{ .Title }}</h1>
+    </div>
+
+    {{ if .Params.images }}
+    <div class="mb-10">
+      {{ partial "gallery.html" (dict "images" .Params.images "alt" .Title) }}
+    </div>
+    {{ end }}
+
+    <div class="prose prose-stone prose-lg max-w-3xl mb-12">
+      {{ .Content }}
+    </div>
+
+    {{/* List child pages */}}
+    {{ if .Pages }}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range .Pages }}
+      <a href="{{ .Permalink }}"
+        class="group rounded-2xl overflow-hidden bg-white border border-stone-200 hover:shadow-xl hover:border-primary-200 transition-all duration-300">
+        {{ with .Params.images }}
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="{{ index . 0 }}" alt="{{ $.Title }}"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+        </div>
+        {{ end }}
+        <div class="p-5">
+          <h3 class="text-lg font-heading font-bold text-stone-900 group-hover:text-primary-700 transition-colors">{{
+            .Title }}</h3>
+          {{ with .Description }}
+          <p class="text-sm text-stone-600 mt-2">{{ . }}</p>
+          {{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

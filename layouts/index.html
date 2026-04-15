@@ -1,0 +1,289 @@
+{{ define "main" }}
+{{/* ===== Hero Section ===== */}}
+<section class="relative h-[85vh] min-h-[600px] -mt-20 flex items-center justify-center overflow-hidden">
+  {{ with .Params.hero_image }}
+  <img src="{{ . }}" alt="Ferienhof Wiesengrund" class="absolute inset-0 w-full h-full object-cover">
+  {{ else }}
+  <div class="absolute inset-0 bg-gradient-to-br from-accent-700 to-accent-900"></div>
+  {{ end }}
+  {{/* Top gradient for header readability */}}
+  <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/70 via-black/40 to-transparent z-[1]"></div>
+  {{/* Overall darkening overlay */}}
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+  {{/* Bottom decorative curve */}}
+  <div class="absolute inset-x-0 bottom-0 z-[2]">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto block"
+      preserveAspectRatio="none">
+      <path d="M0,80 L0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 Z" fill="oklch(0.98 0.005 80)" />
+    </svg>
+  </div>
+  <div class="relative z-10 text-center text-white px-4 max-w-3xl mx-auto pt-20">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl text-white font-heading font-bold mb-4 drop-shadow-lg">
+      Gönnen Sie sich eine Auszeit!
+    </h1>
+    <p class="text-lg sm:text-xl text-white/90 mb-8 drop-shadow">
+      Bauernhofurlaub an der Ostsee — Ferienwohnungen in Schleswig-Holstein
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/ferienwohnungen/"
+        class="px-8 py-3.5 bg-white text-primary-800 font-semibold rounded-lg hover:bg-primary-50 transition-colors shadow-lg">
+        Ferienwohnungen entdecken
+      </a>
+      <a href="/buchung/"
+        class="px-8 py-3.5 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg border border-primary-500">
+        Jetzt buchen
+      </a>
+    </div>
+  </div>
+</section>
+
+{{/* ===== About Section ===== */}}
+<section class="pt-8 pb-16 lg:pt-12 lg:pb-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Leben auf dem Hof</span>
+        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-stone-900 mt-2 mb-6">
+          Willkommen bei Familie Köpke
+        </h2>
+        <div class="prose prose-stone prose-lg">
+          <p>
+            Seit fast einem Jahrhundert bewirtschaften wir, die Familie Köpke, einen Ackerbau- und Milchviehbetrieb in
+            einer der reizvollsten Landschaften Schleswig-Holsteins.
+          </p>
+          <p>
+            Genießen Sie die herrliche Lage zwischen der Ostsee mit ihrem breiten feinsandigen Strand und flachen
+            Wasser, dem Naturschutzgebiet und der Holsteinischen Schweiz mit ihrem abwechslungsreichen Landschaftsbild.
+          </p>
+          <p>
+            Machen Sie Urlaub da, wo die Landwirtschaft noch von der Liebe zur Natur beseelt ist und verbringen einen
+            spannenden, aktiven und erholsamen Urlaub bei uns. Es werden unvergessliche Ferientage!
+          </p>
+        </div>
+        <a href="/hof/"
+          class="inline-flex items-center gap-2 mt-6 text-primary-700 font-semibold hover:text-primary-800 transition-colors">
+          Mehr über unseren Hof
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="relative">
+        <img src="/images/hof/1.jpg" alt="Ferienhof Wiesengrund"
+          class="rounded-2xl shadow-2xl w-full aspect-[4/3] object-cover" loading="lazy">
+        <div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-4 hidden lg:block">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">🌾</span>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-stone-900">Seit fast 100 Jahren</div>
+              <div class="text-xs text-stone-500">Familienbetrieb an der Ostsee</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ===== Erlebnisse Section ===== */}}
+<section class="py-16 lg:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Erlebnisse</span>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold text-stone-900 mt-2">
+        Abenteuer für die ganze Familie
+      </h2>
+      <p class="mt-4 text-lg text-stone-600 max-w-2xl mx-auto">
+        Bei uns gibt es für Groß und Klein viel zu entdecken — von unseren Kühen und Ponys bis hin zu Spielspaß und
+        Naturerlebnissen.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ $erlebnisse := slice (dict "title" "Kühe" "desc" "Begleiten Sie uns beim Melken, Füttern und auf die Weide. Frische Milch für unsere Gäste kostenlos!" "img" "/images/kuehe/1.jpg" "url" "/erlebnisse/kuehe/" "emoji" "🐄") (dict "title" "Ponys" "desc" "Auf unseren acht lieben Ponys können die Kinder von Montags bis Freitags kostenlos reiten." "img" "/images/ponys/1.jpg" "url" "/erlebnisse/ponys/" "emoji" "🐴") (dict "title" "Kinder" "desc" "Spielwiese, Scheune, Trampolin, Tischtennis, Kinderfahrzeuge — bei uns wird es nie langweilig!" "img" "/images/kinder/1.jpg" "url" "/erlebnisse/kinder/" "emoji" "👧") }}
+      {{ range $erlebnisse }}
+      <a href="{{ .url }}"
+        class="group rounded-2xl overflow-hidden bg-warm-50 hover:shadow-xl transition-all duration-300">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="{{ .img }}" alt="{{ .title }}"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-2xl">{{ .emoji }}</span>
+            <h3 class="text-xl font-heading font-bold text-stone-900 group-hover:text-primary-700 transition-colors">{{
+              .title }}</h3>
+          </div>
+          <p class="text-sm text-stone-600 leading-relaxed">{{ .desc }}</p>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    <div class="text-center mt-8">
+      <a href="/erlebnisse/"
+        class="inline-flex items-center gap-2 text-primary-700 font-semibold hover:text-primary-800 transition-colors">
+        Alle Erlebnisse entdecken
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{/* ===== Ferienwohnungen Section ===== */}}
+<section class="py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Ferienwohnungen</span>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold text-stone-900 mt-2">
+        Liebevoll gestaltete Unterkünfte
+      </h2>
+      <p class="mt-4 text-lg text-stone-600 max-w-2xl mx-auto">
+        Fünf Wohnungen von 42 bis 100 qm sowie ein separates Ferienhaus — eingerichtet mit Bauernhofgemütlichkeit oder
+        modernem Design.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range where .Site.RegularPages "Section" "ferienwohnungen" }}
+      <a href="{{ .Permalink }}"
+        class="group rounded-2xl overflow-hidden bg-white border border-stone-200 hover:shadow-xl hover:border-primary-200 transition-all duration-300">
+        <div class="aspect-[4/3] overflow-hidden relative">
+          {{ with .Params.images }}
+          <img src="{{ index . 0 }}" alt="{{ $.Title }}"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          {{ end }}
+          {{ with .Params.sterne }}
+          <div
+            class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-xs font-semibold px-2.5 py-1 rounded-full text-primary-700">
+            {{ range seq . }}★{{ end }}
+          </div>
+          {{ end }}
+        </div>
+        <div class="p-5">
+          <h3 class="text-lg font-heading font-bold text-stone-900 group-hover:text-primary-700 transition-colors mb-2">
+            {{ .Title }}</h3>
+          <div class="flex flex-wrap gap-3 text-sm text-stone-500 mb-3">
+            {{ with .Params.groesse }}<span class="flex items-center gap-1">📐 {{ . }}</span>{{ end }}
+            {{ with .Params.personen }}<span class="flex items-center gap-1">👥 {{ . }}</span>{{ end }}
+          </div>
+          {{ with .Params.preis }}
+          <div class="text-primary-700 font-semibold">{{ . }} / Tag</div>
+          {{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ===== Reviews Section ===== */}}
+<section class="py-16 lg:py-24 bg-primary-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Bewertungen</span>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold text-stone-900 mt-2">
+        Was unsere Gäste sagen
+      </h2>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+      {{/* Score card */}}
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center lg:w-72 flex-shrink-0 mx-auto lg:mx-0">
+        <div class="text-5xl font-heading font-bold text-primary-700 mb-1">{{ .Site.Params.ratingScore }}</div>
+        <div class="text-sm text-stone-500 mb-4">von 10 Punkten</div>
+        <div class="text-lg font-semibold text-stone-800 mb-2">Erstklassig</div>
+        <div class="text-sm text-stone-500">{{ .Site.Params.ratingCount }} Bewertungen</div>
+        <div class="mt-6 space-y-3 text-left">
+          {{ $categories := slice
+          (dict "name" "Unterkunft & Ausstattung" "score" "9.7")
+          (dict "name" "Service & Gastfreundschaft" "score" "9.9")
+          (dict "name" "Ruhe & Erholung" "score" "9.5")
+          (dict "name" "Landerlebnisse" "score" "9.9")
+          }}
+          {{ range $categories }}
+          <div>
+            <div class="flex justify-between text-xs text-stone-600 mb-1">
+              <span>{{ .name }}</span>
+              <span class="font-semibold">{{ .score }}</span>
+            </div>
+            <div class="h-1.5 bg-stone-100 rounded-full overflow-hidden">
+              <div class="h-full bg-primary-500 rounded-full" style="width: {{ mul (div (float .score) 10.0) 100 }}%">
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+
+      {{/* Testimonials */}}
+      <div class="flex-1 grid sm:grid-cols-2 gap-6">
+        {{ $reviews := site.Data.reviews.reviews }}
+        {{ if $reviews }}
+        {{ range first 4 $reviews }}
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-700 font-semibold text-sm">
+              {{ substr .name 0 1 }}
+            </div>
+            <div>
+              <div class="font-semibold text-stone-800 text-sm">{{ .name }}</div>
+              <div class="text-xs text-stone-400">{{ .date }}</div>
+            </div>
+            <div class="ml-auto bg-primary-50 text-primary-700 font-bold text-sm px-2.5 py-1 rounded-lg">{{ .score }}
+            </div>
+          </div>
+          <p class="text-sm text-stone-600 leading-relaxed">{{ .text }}</p>
+        </div>
+        {{ end }}
+        {{ else }}
+        {{/* Fallback static reviews */}}
+        {{ $staticReviews := slice (dict "name" "Tanja F." "date" "April 2026" "score" "10" "text" "Wir hatten zum 5. Mal eine wunderschöne Ferienwoche bei Familie Köpke. Man fühlt sich pudelwohl auf dem Hof und sowohl für Kinder als auch Erwachsene ist es eine tolle Zeit.") (dict "name" "Anja" "date" "April 2026" "score" "10" "text" "Wir waren mit den Kindern 2 Wochen bei Familie Köpke. Es ist für uns super schön dort. Es ist sehr familiär und das gemeinschaftliche wird richtig gelebt.") (dict "name" "Matthis" "date" "April 2026" "score" "10" "text" "Sehr schöner Hof mit vielen Attraktionen für Kinder wie z.B. Pony reiten. Zum Strand ist es auch nicht weit.") }}
+        }}
+        {{ range $staticReviews }}
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-700 font-semibold text-sm">
+              {{ substr .name 0 1 }}
+            </div>
+            <div>
+              <div class="font-semibold text-stone-800 text-sm">{{ .name }}</div>
+              <div class="text-xs text-stone-400">{{ .date }}</div>
+            </div>
+            <div class="ml-auto bg-primary-50 text-primary-700 font-bold text-sm px-2.5 py-1 rounded-lg">{{ .score }}
+            </div>
+          </div>
+          <p class="text-sm text-stone-600 leading-relaxed">{{ .text }}</p>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ===== CTA Section ===== */}}
+<section class="py-16 lg:py-24 bg-gradient-to-br from-primary-700 to-primary-900 text-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">
+      Bereit für Ihren Bauernhofurlaub?
+    </h2>
+    <p class="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
+      Wir freuen uns auf Sie! Senden Sie uns eine unverbindliche Buchungsanfrage oder rufen Sie uns direkt an.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/buchung/"
+        class="px-8 py-3.5 bg-white text-primary-800 font-semibold rounded-lg hover:bg-primary-50 transition-colors shadow-lg">
+        Buchungsanfrage senden
+      </a>
+      <a href="tel:+49438292255"
+        class="px-8 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+        {{ .Site.Params.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}

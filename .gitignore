@@ -7,6 +7,8 @@ node_modules/
 
 # Build output
 dist/
+public/
+resources/
 
 # IDE
 .idea/
@@ -17,6 +19,8 @@ dist/
 .env
 .env.local
 .env.*.local
+scraper/.venv/
+scraper/.env
 
 # Logs
 *.log

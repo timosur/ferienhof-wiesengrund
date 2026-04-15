@@ -1,0 +1,73 @@
+<footer class="bg-stone-800 text-stone-300">
+  {{/* Certificates bar */}}
+  <div class="border-b border-stone-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-70">
+        <span class="text-xs uppercase tracking-wider text-stone-400">Ausgezeichnet</span>
+        <span class="text-sm font-medium">⭐ Beliebtester Ferienhof in Schleswig-Holstein 2020</span>
+        <span class="text-sm font-medium">✓ KinderPLUS</span>
+        <span class="text-sm font-medium">✓ BAG Qualität geprüft</span>
+        <span class="text-sm font-medium">★ {{ .Site.Params.ratingScore }}/10 ({{ .Site.Params.ratingCount }}
+          Bewertungen)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+      {{/* Column 1: About */}}
+      <div>
+        <h3 class="text-lg font-heading font-semibold text-white mb-4">Ferienhof Wiesengrund</h3>
+        <p class="text-sm leading-relaxed mb-4">
+          Seit fast einem Jahrhundert bewirtschaften wir, die Familie Köpke, einen Ackerbau- und Milchviehbetrieb in
+          einer der reizvollsten Landschaften Schleswig-Holsteins.
+        </p>
+        <p class="text-sm text-stone-400">
+          Machen Sie Urlaub da, wo die Landwirtschaft noch von der Liebe zur Natur beseelt ist.
+        </p>
+      </div>
+
+      {{/* Column 2: Contact */}}
+      <div>
+        <h3 class="text-lg font-heading font-semibold text-white mb-4">Kontakt</h3>
+        <address class="not-italic text-sm space-y-2">
+          <p>Kirsten und Andreas Köpke</p>
+          <p>{{ .Site.Params.address }}<br>{{ .Site.Params.zip }} {{ .Site.Params.city }}</p>
+          <p>
+            <a href="tel:+49438292255" class="hover:text-white transition-colors">Tel: {{ .Site.Params.phone }}</a><br>
+            Fax: {{ .Site.Params.fax }}
+          </p>
+          <p>
+            <a href="mailto:{{ .Site.Params.email }}" class="hover:text-white transition-colors">{{ .Site.Params.email
+              }}</a>
+          </p>
+        </address>
+      </div>
+
+      {{/* Column 3: Quick Links */}}
+      <div>
+        <h3 class="text-lg font-heading font-semibold text-white mb-4">Schnellzugriff</h3>
+        <ul class="text-sm space-y-2">
+          <li><a href="/ferienwohnungen/" class="hover:text-white transition-colors">Ferienwohnungen</a></li>
+          <li><a href="/preise/" class="hover:text-white transition-colors">Preise & Infos</a></li>
+          <li><a href="/buchung/" class="hover:text-white transition-colors">Buchungsanfrage</a></li>
+          <li><a href="/kontakt/" class="hover:text-white transition-colors">Anfahrt & Kontakt</a></li>
+          <li><a href="https://www.landreise.de/expose/ferienhof-wiesengrund-4321" target="_blank" rel="noopener"
+              class="hover:text-white transition-colors">Bewertungen auf LandReise.de ↗</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {{/* Bottom bar */}}
+  <div class="border-t border-stone-700">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-stone-500">
+      <p>© {{ now.Year }} Ferienhof Wiesengrund — Kirsten und Andreas Köpke</p>
+      <div class="flex gap-4">
+        <a href="/datenschutz/" class="hover:text-stone-300 transition-colors">Datenschutz</a>
+        <a href="/datenschutz/#impressum" class="hover:text-stone-300 transition-colors">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>

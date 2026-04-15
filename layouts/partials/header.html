@@ -1,0 +1,127 @@
+<header id="site-header" class="sticky top-0 z-40 transition-all duration-300"
+  data-transparent="{{ if .IsHome }}true{{ else }}false{{ end }}">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      {{/* Logo / Site Title */}}
+      <a href="/" class="flex items-center gap-3 group">
+        <span class="header-title text-xl sm:text-2xl font-heading font-bold transition-colors">
+          Ferienhof Wiesengrund
+        </span>
+      </a>
+
+      {{/* Desktop Navigation */}}
+      <nav class="hidden lg:flex items-center gap-1">
+        {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+        <div class="relative group">
+          <a href="{{ .URL }}"
+            class="dropdown-toggle px-3 py-2 text-sm font-medium text-stone-700 hover:text-primary-700 hover:bg-primary-50 rounded-lg transition-colors flex items-center gap-1">
+            {{ .Name }}
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <div
+            class="absolute left-0 top-full mt-1 w-48 bg-white rounded-lg shadow-lg border border-stone-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1">
+            {{ range .Children }}
+            <a href="{{ .URL }}"
+              class="block px-4 py-2 text-sm text-stone-700 hover:bg-primary-50 hover:text-primary-700">{{ .Name }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ else if eq .Identifier "buchung" }}
+        <a href="{{ .URL }}"
+          class="ml-2 px-5 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm">
+          {{ .Name }}
+        </a>
+        {{ else }}
+        <a href="{{ .URL }}"
+          class="px-3 py-2 text-sm font-medium text-stone-700 hover:text-primary-700 hover:bg-primary-50 rounded-lg transition-colors">
+          {{ .Name }}
+        </a>
+        {{ end }}
+        {{ end }}
+      </nav>
+
+      {{/* Mobile menu button */}}
+      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100"
+        aria-label="Menü öffnen">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {{/* Mobile menu overlay */}}
+  <div id="menu-overlay" class="hidden fixed inset-0 bg-black/30 z-40 lg:hidden"></div>
+
+  {{/* Mobile menu */}}
+  <nav id="mobile-menu"
+    class="mobile-menu fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-white z-50 lg:hidden overflow-y-auto shadow-2xl">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-8">
+        <span class="text-lg font-heading font-bold text-primary-800">Ferienhof Wiesengrund</span>
+        <button
+          onclick="document.getElementById('mobile-menu').classList.remove('open');document.getElementById('menu-overlay').classList.add('hidden');document.body.classList.remove('overflow-hidden');"
+          class="p-2 rounded-lg text-stone-400 hover:text-stone-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="space-y-1">
+        {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+        <div>
+          <a href="{{ .URL }}"
+            class="dropdown-toggle flex items-center justify-between w-full px-3 py-3 text-base font-medium text-stone-700 hover:bg-primary-50 rounded-lg">
+            {{ .Name }}
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <div class="hidden ml-4 space-y-1">
+            {{ range .Children }}
+            <a href="{{ .URL }}"
+              class="block px-3 py-2 text-sm text-stone-600 hover:bg-primary-50 hover:text-primary-700 rounded-lg">{{
+              .Name }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ else if eq .Identifier "buchung" }}
+        <a href="{{ .URL }}"
+          class="block px-3 py-3 mt-4 text-center bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700">
+          {{ .Name }}
+        </a>
+        {{ else }}
+        <a href="{{ .URL }}"
+          class="block px-3 py-3 text-base font-medium text-stone-700 hover:bg-primary-50 rounded-lg">
+          {{ .Name }}
+        </a>
+        {{ end }}
+        {{ end }}
+      </div>
+
+      {{/* Contact info in mobile menu */}}
+      <div class="mt-8 pt-6 border-t border-stone-200">
+        <p class="text-sm text-stone-500 mb-2">Kontakt</p>
+        <a href="tel:+49438292255" class="flex items-center gap-2 text-sm text-stone-700 hover:text-primary-700 py-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          {{ .Site.Params.phone }}
+        </a>
+        <a href="mailto:{{ .Site.Params.email }}"
+          class="flex items-center gap-2 text-sm text-stone-700 hover:text-primary-700 py-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          {{ .Site.Params.email }}
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

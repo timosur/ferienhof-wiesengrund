@@ -1,0 +1,98 @@
+baseURL = "https://www.ferienhof-wiesengrund.de/"
+languageCode = "de"
+defaultContentLanguage = "de"
+title = "Ferienhof Wiesengrund"
+theme = ""
+enableRobotsTXT = true
+
+[params]
+description = "Bauernhofurlaub an der Ostsee — Ferienwohnungen auf dem Ferienhof Wiesengrund in Blekendorf, Schleswig-Holstein. Kühe, Ponys, Reiten und Natur für die ganze Familie."
+author = "Kirsten und Andreas Köpke"
+address = "Wiesengrund 6, Nessendorf"
+zip = "24327"
+city = "Blekendorf"
+phone = "04382 / 92255"
+fax = "04382 / 92256"
+email = "info@ferienhof-wiesengrund.de"
+emailFerienhaus = "jessica.koepke@t-online.de"
+lat = 54.2617
+lon = 10.7065
+ratingScore = 9.8
+ratingCount = 289
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
+[menu]
+[[menu.main]]
+identifier = "hof"
+name = "Unser Hof"
+url = "/hof/"
+weight = 1
+
+[[menu.main]]
+identifier = "erlebnisse"
+name = "Erlebnisse"
+url = "/erlebnisse/"
+weight = 2
+
+[[menu.main]]
+identifier = "kuehe"
+name = "Kühe"
+url = "/erlebnisse/kuehe/"
+parent = "erlebnisse"
+weight = 1
+
+[[menu.main]]
+identifier = "ponys"
+name = "Ponys"
+url = "/erlebnisse/ponys/"
+parent = "erlebnisse"
+weight = 2
+
+[[menu.main]]
+identifier = "kinder"
+name = "Kinder"
+url = "/erlebnisse/kinder/"
+parent = "erlebnisse"
+weight = 3
+
+[[menu.main]]
+identifier = "tiere"
+name = "Tiere"
+url = "/erlebnisse/tiere/"
+parent = "erlebnisse"
+weight = 4
+
+[[menu.main]]
+identifier = "spielen"
+name = "Spielen"
+url = "/erlebnisse/spielen/"
+parent = "erlebnisse"
+weight = 5
+
+[[menu.main]]
+identifier = "ferienwohnungen"
+name = "Ferienwohnungen"
+url = "/ferienwohnungen/"
+weight = 3
+
+[[menu.main]]
+identifier = "preise"
+name = "Preise"
+url = "/preise/"
+weight = 4
+
+[[menu.main]]
+identifier = "kontakt"
+name = "Kontakt"
+url = "/kontakt/"
+weight = 5
+
+[[menu.main]]
+identifier = "buchung"
+name = "Buchung"
+url = "/buchung/"
+weight = 6
