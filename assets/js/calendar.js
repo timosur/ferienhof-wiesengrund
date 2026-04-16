@@ -1,6 +1,7 @@
 /**
  * Availability Calendar Component
  * Reads data from /data/availability.json and renders a month-view calendar
+ * with prev/next navigation showing 2 months at a time.
  */
 (function () {
   'use strict';
@@ -24,12 +25,52 @@
     }
   }
 
-  function isBooked(accommodationId, dateStr) {
-    if (!availabilityData || !availabilityData[accommodationId]) return false;
+  /**
+   * Returns the booking status for a given date:
+   *  'booked'   — fully booked (middle of a booking)
+   *  'checkin'  — a booking starts on this day
+   *  'checkout' — a booking ends on this day
+   *  'turnover' — one booking ends AND another starts on this day
+   *  null       — fully available
+   */
+  function getBookingStatus(accommodationId, dateStr) {
+    if (!availabilityData || !availabilityData[accommodationId]) return null;
     const bookings = availabilityData[accommodationId];
-    return bookings.some(function (b) {
-      return dateStr >= b.start && dateStr <= b.end;
-    });
+    let isStart = false;
+    let isEnd = false;
+    let isMid = false;
+    for (let i = 0; i < bookings.length; i++) {
+      var b = bookings[i];
+      if (dateStr === b.start) isStart = true;
+      if (dateStr === b.end) isEnd = true;
+      if (dateStr > b.start && dateStr < b.end) isMid = true;
+    }
+    if (isMid) return 'booked';
+    if (isEnd && isStart) return 'turnover';
+    if (isStart) return 'checkin';
+    if (isEnd) return 'checkout';
+    return null;
+  }
+
+  /**
+   * Returns the last month (as {year, month}) that has booking data for this accommodation.
+   * Falls back to current month + 3 if no data.
+   */
+  function getLastDataMonth(accommodationId) {
+    const now = new Date();
+    const fallback = { year: now.getFullYear(), month: now.getMonth() + 3 };
+    if (!availabilityData || !availabilityData[accommodationId]) return fallback;
+
+    const bookings = availabilityData[accommodationId];
+    let maxDate = null;
+    for (let i = 0; i < bookings.length; i++) {
+      var end = bookings[i].end;
+      if (!maxDate || end > maxDate) maxDate = end;
+    }
+    if (!maxDate) return fallback;
+
+    var parts = maxDate.split('-');
+    return { year: parseInt(parts[0], 10), month: parseInt(parts[1], 10) - 1 };
   }
 
   function formatDate(year, month, day) {
@@ -62,10 +103,13 @@
     // Days
     for (let d = 1; d <= lastDay.getDate(); d++) {
       const dateStr = formatDate(year, month, d);
-      const booked = isBooked(accommodationId, dateStr);
+      const status = getBookingStatus(accommodationId, dateStr);
       const isToday = dateStr === todayStr;
       let cls = 'calendar-day';
-      if (booked) cls += ' booked';
+      if (status === 'booked') cls += ' booked';
+      else if (status === 'checkin') cls += ' checkin';
+      else if (status === 'checkout') cls += ' checkout';
+      else if (status === 'turnover') cls += ' turnover';
       else cls += ' available';
       if (isToday) cls += ' today';
       html += '<div class="' + cls + '">' + d + '</div>';
@@ -75,23 +119,92 @@
     return html;
   }
 
+  function renderCalendarView(container, accommodationId, offset, totalMonths) {
+    // Show 2 months at a time (1 on small screens handled by CSS)
+    var html = '';
+    for (var i = 0; i < 2 && (offset + i) < totalMonths; i++) {
+      var now = new Date();
+      var d = new Date(now.getFullYear(), now.getMonth() + offset + i, 1);
+      html += renderMonth(d.getFullYear(), d.getMonth(), accommodationId);
+    }
+    container.innerHTML = html;
+  }
+
   function initCalendars() {
-    const calendars = document.querySelectorAll('.availability-calendar');
+    var calendars = document.querySelectorAll('.availability-calendar');
     calendars.forEach(function (el) {
-      const id = el.dataset.accommodationId;
+      var id = el.dataset.accommodationId;
       if (!id) return;
 
-      const container = el.querySelector('[id^="calendar-"]');
+      var container = el.querySelector('[id^="calendar-"]');
       if (!container) return;
 
-      const now = new Date();
-      let html = '';
-      // Show current month + next 3 months
-      for (let i = 0; i < 4; i++) {
-        const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
-        html += renderMonth(d.getFullYear(), d.getMonth(), id);
+      var now = new Date();
+      var lastData = getLastDataMonth(id);
+      // Total months from now until the last data month (inclusive)
+      var totalMonths = (lastData.year - now.getFullYear()) * 12 + (lastData.month - now.getMonth()) + 1;
+      if (totalMonths < 2) totalMonths = 2;
+
+      var offset = 0;
+
+      // Navigation
+      var nav = el.querySelector('.calendar-nav');
+      var prevBtn = nav ? nav.querySelector('.cal-prev') : null;
+      var nextBtn = nav ? nav.querySelector('.cal-next') : null;
+      var label = nav ? nav.querySelector('.cal-label') : null;
+
+      function updateLabel() {
+        if (!label) return;
+        var startD = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+        var endIdx = Math.min(offset + 1, totalMonths - 1);
+        var endD = new Date(now.getFullYear(), now.getMonth() + endIdx, 1);
+        if (startD.getFullYear() === endD.getFullYear() && startD.getMonth() === endD.getMonth()) {
+          label.textContent = MONTH_NAMES[startD.getMonth()] + ' ' + startD.getFullYear();
+        } else {
+          label.textContent = MONTH_NAMES[startD.getMonth()] + ' – ' + MONTH_NAMES[endD.getMonth()] + ' ' + endD.getFullYear();
+        }
       }
-      container.innerHTML = html;
+
+      function updateButtons() {
+        if (prevBtn) {
+          prevBtn.disabled = offset <= 0;
+          prevBtn.classList.toggle('opacity-30', offset <= 0);
+          prevBtn.classList.toggle('cursor-not-allowed', offset <= 0);
+        }
+        if (nextBtn) {
+          var atEnd = offset + 2 >= totalMonths;
+          nextBtn.disabled = atEnd;
+          nextBtn.classList.toggle('opacity-30', atEnd);
+          nextBtn.classList.toggle('cursor-not-allowed', atEnd);
+        }
+      }
+
+      function render() {
+        renderCalendarView(container, id, offset, totalMonths);
+        updateLabel();
+        updateButtons();
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          if (offset > 0) {
+            offset -= 2;
+            if (offset < 0) offset = 0;
+            render();
+          }
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          if (offset + 2 < totalMonths) {
+            offset += 2;
+            render();
+          }
+        });
+      }
+
+      render();
     });
   }
 

@@ -1,124 +1,204 @@
 {{ define "main" }}
 <section class="py-16 lg:py-24">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {{/* ===== Wizard Header ===== */}}
     <div class="text-center mb-10">
       <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Buchung</span>
       <h1 class="text-3xl lg:text-4xl font-heading font-bold text-stone-900 mt-2 mb-4">Buchungsanfrage</h1>
-      <p class="text-lg text-stone-600">
-        Senden Sie uns eine unverbindliche Anfrage. Wir melden uns schnellstmöglich bei Ihnen.
-      </p>
+      <p class="text-lg text-stone-600">In wenigen Schritten zur unverbindlichen Anfrage.</p>
     </div>
 
-    <form name="buchung" method="POST" data-netlify="true" netlify-honeypot="bot-field"
-      class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 sm:p-8 space-y-6">
-      <input type="hidden" name="form-name" value="buchung">
-      <p class="hidden"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+    {{/* ===== Step Indicator ===== */}}
+    <div class="flex items-center justify-center gap-2 mb-10" id="wizard-steps">
+      <div class="wizard-step active" data-step="1">
+        <span class="wizard-step-num">1</span>
+        <span class="wizard-step-label hidden sm:inline">Zeitraum</span>
+      </div>
+      <div class="wizard-step-line"></div>
+      <div class="wizard-step" data-step="2">
+        <span class="wizard-step-num">2</span>
+        <span class="wizard-step-label hidden sm:inline">Unterkunft</span>
+      </div>
+      <div class="wizard-step-line"></div>
+      <div class="wizard-step" data-step="3">
+        <span class="wizard-step-num">3</span>
+        <span class="wizard-step-label hidden sm:inline">Anfrage</span>
+      </div>
+    </div>
 
-      {{/* Personal data */}}
-      <fieldset>
-        <legend class="text-lg font-heading font-semibold text-stone-800 mb-4">Ihre persönlichen Daten</legend>
-        <div class="grid sm:grid-cols-2 gap-4">
+    {{/* ===== Step 1: Zeitraum & Personen ===== */}}
+    <div id="wizard-step-1" class="wizard-panel">
+      <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-sm border border-stone-200 p-6 sm:p-8">
+        <h2 class="text-xl font-heading font-semibold text-stone-800 mb-6">Wann möchten Sie kommen?</h2>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label for="name" class="block text-sm font-medium text-stone-700 mb-1">Name *</label>
-            <input type="text" id="name" name="name" required
+            <label for="search-anreise" class="block text-sm font-medium text-stone-700 mb-1">Anreise</label>
+            <input type="date" id="search-anreise"
               class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
           </div>
           <div>
-            <label for="email" class="block text-sm font-medium text-stone-700 mb-1">E-Mail *</label>
-            <input type="email" id="email" name="email" required
-              class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-          </div>
-          <div>
-            <label for="telefon" class="block text-sm font-medium text-stone-700 mb-1">Telefon</label>
-            <input type="tel" id="telefon" name="telefon"
-              class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-          </div>
-          <div>
-            <label for="strasse" class="block text-sm font-medium text-stone-700 mb-1">Straße und Nr.</label>
-            <input type="text" id="strasse" name="strasse"
-              class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-          </div>
-          <div class="sm:col-span-2">
-            <label for="plzort" class="block text-sm font-medium text-stone-700 mb-1">PLZ und Ort</label>
-            <input type="text" id="plzort" name="plzort"
+            <label for="search-abreise" class="block text-sm font-medium text-stone-700 mb-1">Abreise</label>
+            <input type="date" id="search-abreise"
               class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
           </div>
         </div>
-      </fieldset>
+        <div class="mb-4">
+          <label for="search-personen" class="block text-sm font-medium text-stone-700 mb-1">Anzahl Personen</label>
+          <select id="search-personen"
+            class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+            <option value="0">Egal</option>
+            <option value="2">2 Personen</option>
+            <option value="3">3 Personen</option>
+            <option value="4">4 Personen</option>
+            <option value="5">5 Personen</option>
+            <option value="6">6 Personen</option>
+            <option value="7">7 Personen</option>
+          </select>
+        </div>
+        <div class="mb-6">
+          <label for="search-fewo" class="block text-sm font-medium text-stone-700 mb-1">Wunsch-Ferienwohnung <span class="text-stone-400 font-normal">(optional)</span></label>
+          <select id="search-fewo"
+            class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+            <option value="">Keine Präferenz</option>
+            <option value="fewo1">Ferienwohnung 1 (42 qm, 4 Pers.)</option>
+            <option value="fewo2">Ferienwohnung 2 (56 qm, 4 Pers.)</option>
+            <option value="fewo3">Ferienwohnung 3 (75 qm, 5 Pers.)</option>
+            <option value="fewo4">Ferienwohnung 4 (75 qm, 5 Pers.)</option>
+            <option value="fewo5">Ferienwohnung 5 (100 qm, 7 Pers.)</option>
+            <option value="ferienhaus">Ferienhaus (65 qm, 4 Pers.)</option>
+          </select>
+        </div>
+        <div id="step1-error" class="hidden text-red-600 text-sm text-center mb-4"></div>
+        <button id="wizard-next-1" type="button"
+          class="w-full px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-lg">
+          Verfügbarkeit prüfen →
+        </button>
+      </div>
+    </div>
 
-      {{/* Booking details */}}
-      <fieldset>
-        <legend class="text-lg font-heading font-semibold text-stone-800 mb-4">Ihre Buchungsanfrage</legend>
-        <div class="grid sm:grid-cols-2 gap-4">
+    {{/* ===== Step 2: Unterkunft wählen ===== */}}
+    <div id="wizard-step-2" class="wizard-panel hidden">
+      <div id="step2-summary" class="text-center mb-6"></div>
+      <div id="availability-results"></div>
+      <div class="mt-6 text-center">
+        <button id="wizard-back-2" type="button"
+          class="px-6 py-2.5 border border-stone-300 text-stone-700 font-medium rounded-lg hover:bg-stone-50 transition-colors">
+          ← Zeitraum ändern
+        </button>
+      </div>
+    </div>
+
+    {{/* ===== Step 3: Persönliche Daten & Absenden ===== */}}
+    <div id="wizard-step-3" class="wizard-panel hidden">
+      <div class="max-w-xl mx-auto">
+        <div id="step3-summary" class="bg-primary-50 border border-primary-200 rounded-xl p-4 mb-6 text-center"></div>
+
+        <form name="buchung" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+          class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 sm:p-8 space-y-6">
+          <input type="hidden" name="form-name" value="buchung">
+          <input type="hidden" id="anreise" name="anreise">
+          <input type="hidden" id="abreise" name="abreise">
+          <input type="hidden" id="ferienwohnung" name="ferienwohnung">
+          <p class="hidden"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+
+          <fieldset>
+            <legend class="text-lg font-heading font-semibold text-stone-800 mb-4">Ihre persönlichen Daten</legend>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-stone-700 mb-1">Name *</label>
+                <input type="text" id="name" name="name" required
+                  class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-stone-700 mb-1">E-Mail *</label>
+                <input type="email" id="email" name="email" required
+                  class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+              </div>
+              <div>
+                <label for="telefon" class="block text-sm font-medium text-stone-700 mb-1">Telefon</label>
+                <input type="tel" id="telefon" name="telefon"
+                  class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+              </div>
+              <div>
+                <label for="strasse" class="block text-sm font-medium text-stone-700 mb-1">Straße und Nr.</label>
+                <input type="text" id="strasse" name="strasse"
+                  class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+              </div>
+              <div class="sm:col-span-2">
+                <label for="plzort" class="block text-sm font-medium text-stone-700 mb-1">PLZ und Ort</label>
+                <input type="text" id="plzort" name="plzort"
+                  class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+              </div>
+            </div>
+          </fieldset>
+
           <div>
-            <label for="anreise" class="block text-sm font-medium text-stone-700 mb-1">Anreise *</label>
-            <input type="date" id="anreise" name="anreise" required
-              class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-          </div>
-          <div>
-            <label for="abreise" class="block text-sm font-medium text-stone-700 mb-1">Abreise *</label>
-            <input type="date" id="abreise" name="abreise" required
-              class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-          </div>
-          <div class="sm:col-span-2">
-            <label for="ferienwohnung" class="block text-sm font-medium text-stone-700 mb-1">Ferienwohnung *</label>
-            <select id="ferienwohnung" name="ferienwohnung" required
-              class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-              <option value="">Bitte wählen...</option>
-              <option value="fewo1">Ferienwohnung 1 (42 qm, 4 Pers., ★★★)</option>
-              <option value="fewo2">Ferienwohnung 2 (56 qm, 4 Pers., ★★★★)</option>
-              <option value="fewo3">Ferienwohnung 3 (75 qm, 5 Pers., ★★★)</option>
-              <option value="fewo4">Ferienwohnung 4 (75 qm, 5 Pers., ★★★)</option>
-              <option value="fewo5">Ferienwohnung 5 (100 qm, 7 Pers., ★★★★)</option>
-              <option value="ferienhaus">Ferienhaus (65 qm, 4 Pers.)</option>
-            </select>
-          </div>
-          <div class="sm:col-span-2">
             <label for="nachricht" class="block text-sm font-medium text-stone-700 mb-1">Ihre Mitteilung an uns</label>
             <textarea id="nachricht" name="nachricht" rows="4"
               class="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-y"></textarea>
           </div>
+
+          <div class="flex items-start gap-3">
+            <input type="checkbox" id="datenschutz" name="datenschutz" required
+              class="mt-1 h-4 w-4 text-primary-600 border-stone-300 rounded focus:ring-primary-500">
+            <label for="datenschutz" class="text-sm text-stone-600">
+              Ich habe die <a href="/datenschutz/"
+                class="text-primary-700 underline hover:text-primary-800">Datenschutzerklärung</a> gelesen und akzeptiere
+              diese. Die Eingabe meiner Daten erfolgt auf freiwilliger Basis. *
+            </label>
+          </div>
+
+          <button type="submit"
+            class="w-full px-6 py-3.5 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-lg">
+            Anfrage absenden
+          </button>
+          <p class="text-xs text-stone-400 text-center">
+            * Pflichtfelder. Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte
+            weitergegeben.
+          </p>
+        </form>
+
+        <div class="mt-6 text-center">
+          <button id="wizard-back-3" type="button"
+            class="px-6 py-2.5 border border-stone-300 text-stone-700 font-medium rounded-lg hover:bg-stone-50 transition-colors">
+            ← Unterkunft ändern
+          </button>
         </div>
-      </fieldset>
-
-      {{/* Privacy */}}
-      <div class="flex items-start gap-3">
-        <input type="checkbox" id="datenschutz" name="datenschutz" required
-          class="mt-1 h-4 w-4 text-primary-600 border-stone-300 rounded focus:ring-primary-500">
-        <label for="datenschutz" class="text-sm text-stone-600">
-          Ich habe die <a href="/datenschutz/"
-            class="text-primary-700 underline hover:text-primary-800">Datenschutzerklärung</a> gelesen und akzeptiere
-          diese. Die Eingabe meiner Daten erfolgt auf freiwilliger Basis. *
-        </label>
       </div>
+    </div>
 
-      <button type="submit"
-        class="w-full px-6 py-3.5 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-lg">
-        Anfrage absenden
-      </button>
-
-      <p class="text-xs text-stone-400 text-center">
-        * Pflichtfelder. Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte
-        weitergegeben.
-      </p>
-    </form>
   </div>
 </section>
 
-<script>
-  // Pre-select FeWo from URL parameter
-  document.addEventListener('DOMContentLoaded', function () {
-    const params = new URLSearchParams(window.location.search);
-    const fewo = params.get('fewo');
-    if (fewo) {
-      const select = document.getElementById('ferienwohnung');
-      for (const option of select.options) {
-        if (option.value === fewo || option.text.toLowerCase().includes(fewo.toLowerCase())) {
-          option.selected = true;
-          break;
-        }
-      }
-    }
-  });
-</script>
+<style>
+  .wizard-step {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 1rem; border-radius: 9999px;
+    background: var(--color-stone-100); color: var(--color-stone-400);
+    font-size: 0.875rem; font-weight: 500; transition: all 0.2s;
+  }
+  .wizard-step.active {
+    background: var(--color-primary-600); color: #fff;
+  }
+  .wizard-step.done {
+    background: var(--color-primary-100); color: var(--color-primary-700);
+  }
+  .wizard-step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.5rem; height: 1.5rem; border-radius: 9999px;
+    font-weight: 700; font-size: 0.75rem;
+    background: rgba(255,255,255,0.3);
+  }
+  .wizard-step.active .wizard-step-num { background: rgba(255,255,255,0.3); }
+  .wizard-step.done .wizard-step-num { background: var(--color-primary-200); }
+  .wizard-step-line {
+    flex: 0 0 2rem; height: 2px; background: var(--color-stone-200);
+  }
+</style>
+
+{{ $availSearch := resources.Get "js/availability-search.js" }}
+{{ if $availSearch }}
+<script src="{{ $availSearch.RelPermalink }}"></script>
+{{ end }}
 {{ end }}

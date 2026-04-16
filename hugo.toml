@@ -6,7 +6,7 @@ theme = ""
 enableRobotsTXT = true
 
 [params]
-description = "Bauernhofurlaub an der Ostsee — Ferienwohnungen auf dem Ferienhof Wiesengrund in Blekendorf, Schleswig-Holstein. Kühe, Ponys, Reiten und Natur für die ganze Familie."
+description = "Bauernhofurlaub an der Ostsee — Ferienwohnungen auf dem Ferienhof Wiesengrund in Blekendorf, Schleswig-Holstein. Kühe, Pferde, Reiten und Natur für die ganze Familie."
 author = "Kirsten und Andreas Köpke"
 address = "Wiesengrund 6, Nessendorf"
 zip = "24327"
@@ -46,9 +46,9 @@ parent = "erlebnisse"
 weight = 1
 
 [[menu.main]]
-identifier = "ponys"
-name = "Ponys"
-url = "/erlebnisse/ponys/"
+identifier = "pferde"
+name = "Pferde"
+url = "/erlebnisse/pferde/"
 parent = "erlebnisse"
 weight = 2
 
