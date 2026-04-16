@@ -9,7 +9,7 @@ Bei uns auf dem Ferienhof Wiesengrund gibt es für die ganze Familie viel zu erl
 
 <div style="margin: 1.5rem 0;">
   <a href="https://www.eselundlandspielhof.de" target="_blank" rel="noopener noreferrer">
-    <img src="https://www.eselundlandspielhof.de/assets/01-logo-2022-schmal.png" alt="Esel- und Landspielhof Nessendorf" style="max-width: 220px; height: auto;">
+    <img src="/images/partner/esel-landspielhof-logo.png" alt="Esel- und Landspielhof Nessendorf" style="max-width: 220px; height: auto;">
   </a>
 </div>
 

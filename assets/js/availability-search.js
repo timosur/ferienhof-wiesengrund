@@ -286,11 +286,6 @@
     await loadAvailability();
 
     document.getElementById('wizard-next-1').addEventListener('click', onStep1Next);
-    document.getElementById('wizard-back-2').addEventListener('click', function () { goToStep(1); });
-    document.getElementById('wizard-back-3').addEventListener('click', function () {
-      renderStep2();
-      goToStep(2);
-    });
 
     // When Anreise changes, set Abreise min and default to Anreise + 1
     var searchAnreise = document.getElementById('search-anreise');
