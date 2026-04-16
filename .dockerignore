@@ -1,0 +1,9 @@
+node_modules
+public
+resources
+.git
+.github
+.DS_Store
+.env
+.env.local
+scraper

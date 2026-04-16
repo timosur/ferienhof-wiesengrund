@@ -2,7 +2,6 @@ baseURL = "https://www.ferienhof-wiesengrund.de/"
 languageCode = "de"
 defaultContentLanguage = "de"
 title = "Ferienhof Wiesengrund"
-theme = ""
 enableRobotsTXT = true
 
 [params]

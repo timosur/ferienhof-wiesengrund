@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN hugo --minify
+RUN hugo --minify --baseURL "https://ferienhof-preview.timosur.com/"
 
 FROM nginx:alpine
 COPY --from=build /app/public /usr/share/nginx/html
