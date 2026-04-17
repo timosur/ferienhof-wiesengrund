@@ -140,10 +140,8 @@
       if (!container) return;
 
       var now = new Date();
-      var lastData = getLastDataMonth(id);
-      // Total months from now until the last data month (inclusive)
-      var totalMonths = (lastData.year - now.getFullYear()) * 12 + (lastData.month - now.getMonth()) + 1;
-      if (totalMonths < 2) totalMonths = 2;
+      // Always show a full year of calendars
+      var totalMonths = 12;
 
       var offset = 0;
 

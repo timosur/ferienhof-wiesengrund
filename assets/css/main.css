@@ -152,13 +152,13 @@ h6 {
   text-shadow: 0 2px 8px rgb(0 0 0 / 0.5);
 }
 
-#site-header[data-transparent="true"] .dropdown-toggle,
-#site-header[data-transparent="true"] nav a:not(.bg-primary-600) {
+#site-header[data-transparent="true"] > div .dropdown-toggle,
+#site-header[data-transparent="true"] > div nav a:not(.bg-primary-600) {
   color: white;
   text-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
 }
 
-#site-header[data-transparent="true"] nav a:not(.bg-primary-600):hover {
+#site-header[data-transparent="true"] > div nav a:not(.bg-primary-600):hover {
   background-color: rgb(255 255 255 / 0.15);
   color: white;
 }
@@ -182,13 +182,13 @@ h6 {
   text-shadow: none;
 }
 
-#site-header.scrolled .dropdown-toggle,
-#site-header.scrolled nav a:not(.bg-primary-600) {
+#site-header.scrolled > div .dropdown-toggle,
+#site-header.scrolled > div nav a:not(.bg-primary-600) {
   color: var(--color-stone-700);
   text-shadow: none;
 }
 
-#site-header.scrolled nav a:not(.bg-primary-600):hover {
+#site-header.scrolled > div nav a:not(.bg-primary-600):hover {
   background-color: var(--color-primary-50);
   color: var(--color-primary-700);
 }
@@ -207,12 +207,12 @@ h6 {
   color: var(--color-primary-800);
 }
 
-#site-header[data-transparent="false"] .dropdown-toggle,
-#site-header[data-transparent="false"] nav a:not(.bg-primary-600) {
+#site-header[data-transparent="false"] > div .dropdown-toggle,
+#site-header[data-transparent="false"] > div nav a:not(.bg-primary-600) {
   color: var(--color-stone-700);
 }
 
-#site-header[data-transparent="false"] nav a:not(.bg-primary-600):hover {
+#site-header[data-transparent="false"] > div nav a:not(.bg-primary-600):hover {
   background-color: var(--color-primary-50);
   color: var(--color-primary-700);
 }

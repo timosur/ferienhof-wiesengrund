@@ -51,34 +51,49 @@
     })();
 
     // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function () {
-      const btn = document.getElementById('menu-toggle');
-      const menu = document.getElementById('mobile-menu');
-      const overlay = document.getElementById('menu-overlay');
-      if (btn && menu) {
-        btn.addEventListener('click', function () {
-          menu.classList.toggle('open');
-          overlay.classList.toggle('hidden');
-          document.body.classList.toggle('overflow-hidden');
-        });
-        if (overlay) {
-          overlay.addEventListener('click', function () {
-            menu.classList.remove('open');
-            overlay.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-          });
-        }
+    (function () {
+      function openMenu() {
+        var menu = document.getElementById('mobile-menu');
+        var overlay = document.getElementById('menu-overlay');
+        if (menu) menu.classList.add('open');
+        if (overlay) overlay.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
       }
-      // Dropdown toggle on mobile
-      document.querySelectorAll('.dropdown-toggle').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-          if (window.innerWidth < 1024) {
-            e.preventDefault();
-            el.nextElementSibling.classList.toggle('hidden');
-          }
-        });
+      function closeMenu() {
+        var menu = document.getElementById('mobile-menu');
+        var overlay = document.getElementById('menu-overlay');
+        if (menu) menu.classList.remove('open');
+        if (overlay) overlay.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      document.addEventListener('click', function (e) {
+        // Open menu
+        if (e.target.closest('#menu-toggle')) {
+          openMenu();
+          return;
+        }
+        // Close menu via close button
+        if (e.target.closest('#menu-close')) {
+          closeMenu();
+          return;
+        }
+        // Close menu via overlay
+        if (e.target.closest('#menu-overlay')) {
+          closeMenu();
+          return;
+        }
+        // Mobile dropdown toggle
+        var dropdownBtn = e.target.closest('.mobile-dropdown-toggle');
+        if (dropdownBtn) {
+          e.preventDefault();
+          var submenu = dropdownBtn.nextElementSibling;
+          if (submenu) submenu.classList.toggle('hidden');
+          var arrow = dropdownBtn.querySelector('svg');
+          if (arrow) arrow.classList.toggle('rotate-180');
+        }
       });
-    });
+    })();
   </script>
 </body>
 

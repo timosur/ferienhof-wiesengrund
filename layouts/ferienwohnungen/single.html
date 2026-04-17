@@ -30,28 +30,24 @@
             <div class="grid grid-cols-2 gap-4 mb-6">
               {{ with .Params.groesse }}
               <div class="bg-white rounded-xl p-4 text-center">
-                <div class="text-2xl mb-1">📐</div>
                 <div class="text-lg font-bold text-stone-800">{{ . }}</div>
                 <div class="text-xs text-stone-500">Wohnfläche</div>
               </div>
               {{ end }}
               {{ with .Params.personen }}
               <div class="bg-white rounded-xl p-4 text-center">
-                <div class="text-2xl mb-1">👥</div>
                 <div class="text-lg font-bold text-stone-800">{{ . }}</div>
                 <div class="text-xs text-stone-500">Personen</div>
               </div>
               {{ end }}
               {{ with .Params.sterne }}
               <div class="bg-white rounded-xl p-4 text-center">
-                <div class="text-2xl mb-1">⭐</div>
                 <div class="text-lg font-bold text-stone-800">{{ range seq . }}★{{ end }}</div>
                 <div class="text-xs text-stone-500">Klassifizierung</div>
               </div>
               {{ end }}
               {{ with .Params.schlafzimmer }}
               <div class="bg-white rounded-xl p-4 text-center">
-                <div class="text-2xl mb-1">🛏️</div>
                 <div class="text-lg font-bold text-stone-800">{{ . }}</div>
                 <div class="text-xs text-stone-500">Schlafzimmer</div>
               </div>

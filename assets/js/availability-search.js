@@ -99,8 +99,8 @@
 
     // Summary line
     var summaryEl = document.getElementById('step2-summary');
-    var summaryText = '📅 ' + formatDE(anreise) + ' – ' + formatDE(abreise);
-    if (personen > 0) summaryText += '  ·  👥 ' + personen + ' Personen';
+    var summaryText = formatDE(anreise) + ' – ' + formatDE(abreise);
+    if (personen > 0) summaryText += '  ·  ' + personen + ' Personen';
     summaryEl.innerHTML = '<span class="inline-block bg-primary-50 text-primary-800 text-sm font-medium px-4 py-2 rounded-full">' + summaryText + '</span>';
 
     var available = [];
@@ -215,8 +215,8 @@
     }
     html += '<h4 class="font-heading font-semibold text-stone-900 mb-2">' + meta.title + '</h4>';
     html += '<div class="text-sm text-stone-500 space-y-1 mb-3">';
-    html += '<div>📐 ' + meta.size + ' · 👥 ' + meta.persons + '</div>';
-    html += '<div>💰 ' + meta.price + ' / Nacht</div>';
+    html += '<div>' + meta.size + ' · ' + meta.persons + '</div>';
+    html += '<div>' + meta.price + ' / Nacht</div>';
     if (shiftLabel) {
       html += '<div class="text-primary-700 font-medium">' + shiftLabel + '</div>';
     }
@@ -233,7 +233,7 @@
     var html = '<div class="bg-warm-50 rounded-xl border border-stone-200 p-4">';
     html += '<div class="mb-3">';
     html += '<h4 class="font-heading font-semibold text-stone-900">' + meta.title + '</h4>';
-    html += '<span class="text-sm text-stone-500">📐 ' + meta.size + ' · 👥 ' + meta.persons + ' · 💰 ' + meta.price + '</span>';
+    html += '<span class="text-sm text-stone-500">' + meta.size + ' · ' + meta.persons + ' · ' + meta.price + '</span>';
     html += '</div>';
     html += '<div class="grid sm:grid-cols-2 gap-2">';
     for (var i = 0; i < alternatives.length; i++) {
@@ -272,7 +272,7 @@
     document.getElementById('ferienwohnung').value = chosen.fewoSlug;
 
     var summaryHtml = '<strong>' + chosen.fewoTitle + '</strong>';
-    summaryHtml += '<br><span class="text-sm text-primary-700">📅 ' + formatDE(chosen.anreise) + ' – ' + formatDE(chosen.abreise) + '</span>';
+    summaryHtml += '<br><span class="text-sm text-primary-700">' + formatDE(chosen.anreise) + ' – ' + formatDE(chosen.abreise) + '</span>';
     document.getElementById('step3-summary').innerHTML = summaryHtml;
 
     setTimeout(function () {

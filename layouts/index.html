@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{/* ===== Hero Section ===== */}}
-<section class="relative h-[85vh] min-h-[600px] -mt-20 flex items-center justify-center overflow-hidden">
+<section class="relative h-screen min-h-[600px] -mt-20 flex items-center justify-center">
   {{ with .Params.hero_image }}
-  <img src="{{ . }}" alt="Ferienhof Wiesengrund" class="absolute inset-0 w-full h-full object-cover">
+  <img src="{{ . }}" alt="Ferienhof Wiesengrund" class="absolute inset-0 w-full h-full object-cover overflow-hidden">
   {{ else }}
   <div class="absolute inset-0 bg-gradient-to-br from-accent-700 to-accent-900"></div>
   {{ end }}
@@ -11,7 +11,7 @@
   {{/* Overall darkening overlay */}}
   <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
   {{/* Bottom decorative curve */}}
-  <div class="absolute inset-x-0 bottom-0 z-[2]">
+  <div class="absolute inset-x-0 -bottom-1 z-[2]">
     <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto block"
       preserveAspectRatio="none">
       <path d="M0,80 L0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 Z" fill="oklch(0.98 0.005 80)" />
@@ -74,7 +74,7 @@
         <div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-4 hidden lg:block">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center">
-              <span class="text-2xl">🌾</span>
+              <svg class="w-6 h-6 text-accent-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21c0 0-8-4-8-10a4 4 0 018 0 4 4 0 018 0c0 6-8 10-8 10z"/></svg>
             </div>
             <div>
               <div class="text-sm font-semibold text-stone-900">Seit fast 100 Jahren</div>
@@ -101,7 +101,7 @@
       </p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {{ $erlebnisse := slice (dict "title" "Kühe" "desc" "Begleiten Sie uns beim Melken, Füttern und auf die Weide. Frische Milch für unsere Gäste kostenlos!" "img" "/images/kuehe/1.jpg" "url" "/erlebnisse/kuehe/" "emoji" "🐄") (dict "title" "Pferde" "desc" "Auf unseren Pferden und Ponys können Kinder aller Altersklassen mehrmals pro Woche kostenlos reiten." "img" "/images/ponys/1.jpg" "url" "/erlebnisse/pferde/" "emoji" "🐴") (dict "title" "Kinder" "desc" "Spielwiese, Scheune, Trampolin, Tischtennis, Kinderfahrzeuge — bei uns wird es nie langweilig!" "img" "/images/kinder/1.jpg" "url" "/erlebnisse/kinder/" "emoji" "👧") }}
+      {{ $erlebnisse := slice (dict "title" "Kühe" "desc" "Begleiten Sie uns beim Melken, Füttern und auf die Weide. Frische Milch für unsere Gäste kostenlos!" "img" "/images/kuehe/1.jpg" "url" "/erlebnisse/kuehe/") (dict "title" "Pferde" "desc" "Auf unseren Pferden und Ponys können Kinder aller Altersklassen mehrmals pro Woche kostenlos reiten." "img" "/images/ponys/1.jpg" "url" "/erlebnisse/pferde/") (dict "title" "Kinder" "desc" "Spielwiese, Scheune, Trampolin, Tischtennis, Kinderfahrzeuge — bei uns wird es nie langweilig!" "img" "/images/kinder/1.jpg" "url" "/erlebnisse/kinder/") }}
       {{ range $erlebnisse }}
       <a href="{{ .url }}"
         class="group rounded-2xl overflow-hidden bg-warm-50 hover:shadow-xl transition-all duration-300">
@@ -111,7 +111,6 @@
         </div>
         <div class="p-6">
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-2xl">{{ .emoji }}</span>
             <h3 class="text-xl font-heading font-bold text-stone-900 group-hover:text-primary-700 transition-colors">{{
               .title }}</h3>
           </div>
