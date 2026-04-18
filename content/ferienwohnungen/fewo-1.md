@@ -3,7 +3,6 @@ title: "Ferienwohnung 1"
 description: "Gemütliche Ferienwohnung im 1. Stock unseres Ferienhauses."
 groesse: "42 qm"
 personen: "4 Personen"
-sterne: 3
 schlafzimmer: 2
 preis: "60 – 80 €"
 landreise_id: "9200"

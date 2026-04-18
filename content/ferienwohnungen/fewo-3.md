@@ -3,7 +3,6 @@ title: "Ferienwohnung 3"
 description: "Große, helle Wohnung mit schöner Aussicht auf Garten und Felder."
 groesse: "75 qm"
 personen: "max. 5 Personen"
-sterne: 3
 schlafzimmer: 2
 preis: "70 – 95 €"
 landreise_id: "9478"

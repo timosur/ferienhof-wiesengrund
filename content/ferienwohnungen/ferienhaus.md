@@ -34,5 +34,3 @@ Das Ferienhaus liegt auf einem separaten Grundstück gegenüber unserem Hof. Von
 Im Erdgeschoss befinden sich das gemütliche Wohnzimmer mit TV, die separate Küche mit moderner Einbauküche (Geschirrspüler) und Essecke sowie das Bad mit Dusche und WC.
 
 Zwei Schlafzimmer mit je 2 Betten befinden sich im ersten Stock.
-
-**Buchungsadresse:** [jessica.koepke@t-online.de](mailto:jessica.koepke@t-online.de)

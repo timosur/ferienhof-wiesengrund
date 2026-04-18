@@ -3,7 +3,6 @@ title: "Ferienwohnung 4"
 description: "Geräumige Wohnung im 1. Stock des Bauernhauses, auch für 2 kleine Familien geeignet."
 groesse: "75 qm"
 personen: "max. 5 Personen"
-sterne: 3
 schlafzimmer: 2
 preis: "65 – 90 €"
 landreise_id: "9479"

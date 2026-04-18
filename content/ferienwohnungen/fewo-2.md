@@ -3,7 +3,6 @@ title: "Ferienwohnung 2"
 description: "Gemütliche Ferienwohnung im Erdgeschoss mit Sonnenterrasse."
 groesse: "56 qm"
 personen: "max. 4 Personen"
-sterne: 4
 schlafzimmer: 2
 preis: "65 – 85 €"
 landreise_id: "9477"

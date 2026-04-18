@@ -34,23 +34,3 @@ Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Ve
 ## Rechtsgrundlage der Verarbeitung
 
 Art. 6 I lit. a DS-GVO dient als Rechtsgrundlage für Verarbeitungsvorgänge, bei denen wir eine Einwilligung einholen. Ist die Verarbeitung zur Erfüllung eines Vertrags erforderlich, beruht die Verarbeitung auf Art. 6 I lit. b DS-GVO.
-
----
-
-{#impressum}
-## Impressum
-
-**Eigentümer und verantwortlich i.S.d. § 5 TMG**
-
-Kirsten und Andreas Köpke
-Wiesengrund 6, Nessendorf
-24327 Blekendorf
-
-Tel.: [04382 / 92255](tel:+49438292255)
-E-Mail: [info@ferienhof-wiesengrund.de](mailto:info@ferienhof-wiesengrund.de)
-
-**Hinweis zur Online-Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO:**
-Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: [https://ec.europa.eu/consumers/odr/](https://ec.europa.eu/consumers/odr/)
-
-**Bildquellennachweise:**
-Zahlreiche Bilder auf unserer Webpräsenz sind Urlaubsfotos unserer Gäste, die uns freundlicherweise zur Verfügung gestellt wurden. Weitere Fotografien: Familie Köpke. Das Copyright aller Fotografien liegt allein beim jeweiligen Autor.

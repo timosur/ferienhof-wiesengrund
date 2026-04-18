@@ -35,10 +35,14 @@
     return true;
   }
 
+  function toLocalISO(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
   function shiftDate(isoStr, days) {
     const d = new Date(isoStr + 'T00:00:00');
     d.setDate(d.getDate() + days);
-    return d.toISOString().slice(0, 10);
+    return toLocalISO(d);
   }
 
   function formatDE(isoStr) {
@@ -61,6 +65,26 @@
       else if (n === step) el.classList.add('active');
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function initStepNavigation() {
+    // Clickable step indicators (only navigate back to completed steps)
+    document.querySelectorAll('#wizard-steps .wizard-step').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var targetStep = parseInt(el.dataset.step, 10);
+        if (targetStep < currentStep) {
+          goToStep(targetStep);
+        }
+      });
+    });
+
+    // Back buttons
+    document.querySelectorAll('.wizard-back-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = parseInt(btn.dataset.back, 10);
+        goToStep(target);
+      });
+    });
   }
 
   /* ---- Step 1 → 2 ---- */
@@ -286,20 +310,21 @@
     await loadAvailability();
 
     document.getElementById('wizard-next-1').addEventListener('click', onStep1Next);
+    initStepNavigation();
 
     // When Anreise changes, set Abreise min and default to Anreise + 1
     var searchAnreise = document.getElementById('search-anreise');
     var searchAbreise = document.getElementById('search-abreise');
-    var today = new Date().toISOString().slice(0, 10);
+    var today = toLocalISO(new Date());
     searchAnreise.min = today;
     searchAnreise.value = today;
     searchAbreise.min = shiftDate(today, 1);
-    searchAbreise.value = shiftDate(today, 1);
+    searchAbreise.value = shiftDate(today, 3);
     searchAnreise.addEventListener('change', function () {
       var val = searchAnreise.value;
       if (!val) return;
-      var nextDay = shiftDate(val, 1);
-      searchAbreise.min = nextDay;
+      var nextDay = shiftDate(val, 3);
+      searchAbreise.min = shiftDate(val, 1);
       if (!searchAbreise.value || searchAbreise.value <= val) {
         searchAbreise.value = nextDay;
       }

@@ -3,7 +3,7 @@
 {{ $alt := .alt | default "Galeriebild" }}
 
 {{ if $images }}
-<div class="gallery" x-data="{ current: 0, lightboxOpen: false }">
+<div class="gallery overflow-hidden" x-data="{ current: 0, lightboxOpen: false }">
   {{/* Main image */}}
   <div class="relative rounded-xl overflow-hidden bg-stone-100 aspect-[4/3] mb-3 cursor-pointer"
     @click="lightboxOpen = true">

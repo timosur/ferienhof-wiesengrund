@@ -3,36 +3,41 @@ title: "Preise & Informationen"
 description: "Preise und Informationen zu unseren Ferienwohnungen."
 images:
   - /images/preisinfo/1.jpg
+preise:
+  - name: "Ferienwohnung 1"
+    size: "42 qm"
+    persons: "4 Personen"
+    price_from: 60
+    price_to: 80
+    link: "/ferienwohnungen/fewo-1/"
+  - name: "Ferienwohnung 2"
+    size: "56 qm"
+    persons: "max. 4 Personen"
+    price_from: 65
+    price_to: 85
+    link: "/ferienwohnungen/fewo-2/"
+  - name: "Ferienwohnung 3"
+    size: "75 qm"
+    persons: "max. 5 Personen"
+    price_from: 70
+    price_to: 95
+    link: "/ferienwohnungen/fewo-3/"
+  - name: "Ferienwohnung 4"
+    size: "75 qm"
+    persons: "max. 5 Personen"
+    price_from: 65
+    price_to: 90
+    link: "/ferienwohnungen/fewo-4/"
+  - name: "Ferienwohnung 5"
+    size: "100 qm"
+    persons: "2 – 7 Personen"
+    price_from: 95
+    price_to: 150
+    link: "/ferienwohnungen/fewo-5/"
+  - name: "Ferienhaus"
+    size: "65 qm"
+    persons: "4 Personen"
+    price_from: 90
+    price_to: 105
+    link: "/ferienwohnungen/ferienhaus/"
 ---
-
-## Unsere Preise
-
-| Unterkunft | Größe | Personen | Preis / Tag |
-|---|---|---|---|
-| Ferienwohnung 1 | 42 qm | 4 Personen | 60 – 80 € |
-| Ferienwohnung 2 | 56 qm | max. 4 Personen | 65 – 85 € |
-| Ferienwohnung 3 | 75 qm | max. 5 Personen | 70 – 95 € |
-| Ferienwohnung 4 | 75 qm | max. 5 Personen | 65 – 90 € |
-| Ferienwohnung 5 | 100 qm | 2 – 7 Personen | 95 – 150 € |
-| Ferienhaus | 65 qm | 4 Personen | 90 – 105 € |
-
-*Preise abhängig von Saisonzeit und Personenzahl.*
-
-## Endreinigung
-
-Die Endreinigung ist normalerweise im Mietpreis inbegriffen, außer:
-
-- bei **Kurzurlaub** (Mietdauer unter 5 Tage)
-- bei **Urlaub mit Hund** (unabhängig von der Mietdauer)
-
-In diesen Fällen berechnen wir für die Endreinigung eine faire Pauschale, abhängig von der Wohnungsgröße.
-
-## Kurabgabe
-
-In der Vor-, Haupt- und Nachsaison sind alle volljährigen Gäste verpflichtet, eine Kurabgabe zu entrichten:
-
-- **Vor- und Nachsaison:** 1,50 € / Tag
-- **Hauptsaison:** 3,00 € / Tag
-- **Abgabenfrei:** 16.09. bis 30.04.
-
-Sie erhalten dafür die [ostseecard](http://www.ostseecard.de/), mit der Sie zahlreiche Vorteile und Vergünstigungen in der Umgebung nutzen können.

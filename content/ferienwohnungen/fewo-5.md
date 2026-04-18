@@ -3,7 +3,6 @@ title: "Ferienwohnung 5"
 description: "Großzügige, 2015 ausgebaute Wohnung über 2 Etagen mit modernem Design."
 groesse: "100 qm"
 personen: "2 – 7 Personen"
-sterne: 4
 schlafzimmer: 3
 preis: "95 – 150 €"
 landreise_id: "9480"
